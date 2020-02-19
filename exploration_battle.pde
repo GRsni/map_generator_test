@@ -5,27 +5,29 @@ PGraphics background;
 PVector cameraOr;
 PVector baseCoord;
 boolean up, down, left, right;
-int step=3, scl=15;
+int step=4, scl=15;
 
 void setup() {
-  fullScreen();
-  //size(600, 400);
+  //fullScreen();
+  size(1200, 700);
   cameraOr=new PVector(width/2, height/2);
   player=new Player(cameraOr);
   baseCoord=new PVector(0, 0);
   map=new MapGenerator();
+  background=map.createMap(player.pos);
 }
 
 void draw() {
   background(255);
   player.updatePrev();
   updateCamera();
-  if(player.moved()){
-    
+  if (player.moved()) {
+    background=map.createMap(player.pos);
   }
+  image(background, 0, 0);
   push();
   translate(width/2, height/2);
-  image(map.createMap(player.pos), baseCoord.x-player.pos.x, baseCoord.y-player.pos.y);
+
   //fill(0);
   //rect(baseCoord.x-player.pos.x, baseCoord.y-player.pos.y, width, height);
   player.show();

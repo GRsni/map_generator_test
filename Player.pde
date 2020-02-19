@@ -1,6 +1,7 @@
 class Player {
   PVector pos;
   PVector prev=new PVector(0, 0);
+  int size=10;
 
   Player(PVector pos) {
     this.pos=pos;
@@ -11,7 +12,7 @@ class Player {
     fill(255, 0, 0);
     noStroke();
     rectMode(CENTER);
-    rect(0, 0, 20, 20);
+    square(0, 0, size);
     pop();
   }
 
@@ -26,6 +27,6 @@ class Player {
   }
 
   boolean moved() {
-    return pos.x==prev.y&&pos.y==prev.y;
+    return pos.x!=prev.y||pos.y!=prev.y;
   }
 }
